@@ -31,7 +31,7 @@ customParameters.push(credentials(
   name: 'NPM_CREDENTIALS_ID',
   description: 'npm auth token',
   credentialType: 'org.jenkinsci.plugins.plaincredentials.impl.StringCredentialsImpl',
-  defaultValue: 'giza-jenkins-basicAuth',
+  defaultValue: 'nexus3-marktest-token',
   required: true
 ))
 customParameters.push(string(
@@ -45,12 +45,6 @@ customParameters.push(choice(
   description: 'Publish a release or snapshot version. By default, this task will create snapshot. If you choose release other than snapshot, your branch version will bump up. Release can only be enabled on `master` or version branch like `v1.2.3`.',
   choices: ['SNAPSHOT', 'PATCH', 'MINOR', 'MAJOR']
  ))
-customParameters.push(string(
-  name: 'ARTIFACTORY_SERVER',
-  description: 'Artifactory server, should be pre-defined in Jenkins configuration',
-  defaultValue: 'gizaArtifactory',
-  trim: true
-))
 customParameters.push(credentials(
   name: 'GITHUB_CREDENTIALS',
   description: 'Github user credentials',
@@ -180,8 +174,6 @@ node ('ibm-jenkins-slave-nvm-jnlp') {
 
     stage('publish') {
       // ===== publishing to jfrog npm registry ==============================
-      // artifactory is pre-defined in Jenkins management
-      def server = Artifactory.server params.ARTIFACTORY_SERVER
       def npmRegistry = sh(script: "node -e \"console.log(require('./package.json').publishConfig.registry)\"", returnStdout: true).trim()
       if (!npmRegistry || !npmRegistry.startsWith('http')) {
         error 'npm registry is not defined, or cannot be retrieved'

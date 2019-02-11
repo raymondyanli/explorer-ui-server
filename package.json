@@ -9,7 +9,7 @@
     "explorer-ui-server": "src/index.js"
   },
   "publishConfig": {
-    "registry": "https://gizaartifactory.jfrog.io/gizaartifactory/api/npm/npm-local-release/"
+    "registry": "http://35.231.209.177:8081/repository/npm-private/"
   },
   "scripts": {
     "start": "node src/index.js",
