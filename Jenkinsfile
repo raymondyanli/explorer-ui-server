@@ -200,21 +200,21 @@ node ('ibm-jenkins-slave-nvm-jnlp') {
         // publish
         sh 'npm publish'
 
-        def commitHash = sh(script: 'git rev-parse --verify HEAD', returnStdout: true).trim()
-        // tag branch
-        tagGithubRepository(
-          repositoryName,
-          commitHash,
-          "v${packageVersion}",
-          params.GITHUB_CREDENTIALS
-        )
-        // bump version
-        npmVersion(
-          repositoryName,
-          env.BRANCH_NAME,
-          params.NPM_RELEASE.toLowerCase(),
-          params.GITHUB_CREDENTIALS
-        )
+        // def commitHash = sh(script: 'git rev-parse --verify HEAD', returnStdout: true).trim()
+        // // tag branch
+        // tagGithubRepository(
+        //   repositoryName,
+        //   commitHash,
+        //   "v${packageVersion}",
+        //   params.GITHUB_CREDENTIALS
+        // )
+        // // bump version
+        // npmVersion(
+        //   repositoryName,
+        //   env.BRANCH_NAME,
+        //   params.NPM_RELEASE.toLowerCase(),
+        //   params.GITHUB_CREDENTIALS
+        // )
       }
     }
 
