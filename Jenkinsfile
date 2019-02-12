@@ -15,7 +15,7 @@ def repositoryName = 'zowe/explorer-ui-server'
 def isPullRequest = env.BRANCH_NAME.startsWith('PR-')
 def isMasterBranch = env.BRANCH_NAME == 'master'
 def isReleaseBranch = env.BRANCH_NAME ==~ /^v[0-9]+\.[0-9]+\.[0-9x]+$/
-def extraReleaseBranches = ['tag-release']
+def extraReleaseBranches = ['nexus-publishing']
 def supportedReleaseTypes = ['PATCH', 'MINOR', 'MAJOR']
 def allowReleasing = false
 
